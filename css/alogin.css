@@ -1,0 +1,77 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Bitter', serif;
+    background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2c3e50, #fa5c14); 
+}
+.form-sec{
+    width : 500px;
+    margin: 0px auto;
+    background-color: aliceblue;
+    padding: 20px;
+    margin-top: 150px;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+}
+.circle{
+    position: fixed;
+    display: block;
+    border-radius: 50%;
+    transition: .5s;
+}
+.circle:hover{
+    transform: scale(1.4);
+}
+
+.circle:nth-child(1){
+    width:300px;
+    height:300px;
+    border:3px solid #fff;
+    top:150px;
+    left:-100px;
+    border-radius:50%;
+  }
+
+.circle:nth-child(2){
+    width:120px;
+    height:120px;
+    right:90px;
+    top:80px;
+    background-color:#fff;
+  }
+
+.circle:nth-child(3){
+    width:200px;
+    height:200px;
+    right:300px;
+    bottom:-90px;
+    border:3px solid #fff;
+}
+
+.circle:nth-child(4){
+    width: 80px;
+    height: 80px;
+    top: 70px;
+    left: 250px;
+    background-color: #fff;
+}
+.form-sec form input{
+    width : 80%;
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 2px solid rgba(0,0,0,0.5);
+    border-radius: 5px;
+    color: black;
+    outline: transparent;
+}
+
+.form-sec form input[type=submit]
+{
+    cursor: pointer;
+    background: linear-gradient(to right, #2c3e50, #fa5c14);
+}
