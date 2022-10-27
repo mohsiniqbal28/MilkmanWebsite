@@ -105,6 +105,7 @@ $date=$quan="";
                   }
                   $_SESSION['quantity of milk'] = $_POST['quantity'];
                   $_SESSION['Date of Order'] = $_POST['date'];
+                  var_dump($_SESSION['Date of Order']);
             }
         
             

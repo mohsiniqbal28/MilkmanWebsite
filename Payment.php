@@ -61,15 +61,15 @@ $d=$_SESSION['Date of Order'];
       $sql = "SELECT Uprice FROM milk_product WHERE Milk_id=1";
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
-     $price=$row['Uprice'];
-$total=$q*$price;
-$sql="SELECT Order_id FROM tbl_order WHERE Order_date='$d'";
-$run=mysqli_query($conn,$sql);
-$result=mysqli_fetch_assoc($run);
-$oid=$result['Order_id'];
+      $price=$row['Uprice'];
+      $total=$q*$price;
+      $sql="SELECT Order_id FROM tbl_order WHERE Order_date='$d'";
+      $run=mysqli_query($conn,$sql);
+      $result=mysqli_fetch_assoc($run);
+      $oid=$result['Order_id'];
 if (isset($_POST['submit'])) {
 include('config.php');
-$sql = "INSERT INTO Payment VALUES ('','$total','$oid')";
+$sql = "INSERT INTO Payment VALUES ('','$total','$oid','$d')";
 $result=mysqli_query($conn, $sql);     
 if($result=true)
   {

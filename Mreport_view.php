@@ -48,46 +48,80 @@
      <!-- Navbar Ended -->
 
 <h1 style="margin-top:20px; color:orangered;">Monthly Report</h1>
+<form style="margin-top:50px; margin-bottom:100px;margin-left:260px;" action="" method="GET">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <h6>From Date</h6>
+                                        <input type="date" name="from_date" value="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <h6>To Date</h6>
+                                        <input type="date" name="to_date" value="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label></label> <br>
+                                      <button type="submit" class="btn btn-primary">Report</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
 
 <?Php
+global $counter;
+$quan= $pay="";
 
     require_once "config.php"; 
-	$sql_naga = "SELECT Order_date FROM tbl_order ";
-	$result_naga = mysqli_query($conn, $sql_naga);
-	$row_naga = $result_naga -> fetch_all(MYSQLI_ASSOC);
-	global $last;
-	global $counter;
+    if(isset($_GET['from_date']) && isset($_GET['to_date']))
+{
+    $from_date = $_GET['from_date'];
+    $to_date = $_GET['to_date'];
 
+    //Query For Naga 
+
+    $sql_naga = "SELECT Order_date FROM tbl_order where Order_date BETWEEN '$from_date'AND'$to_date'";                               
+    $result_naga = mysqli_query($conn, $sql_naga);
+	$row_naga = $result_naga -> fetch_all(MYSQLI_ASSOC);                                       
+    global $last;
+	
 	foreach ($result_naga as $key => $item) {
 
 	    $current = $item['Order_date'];
 	    if($key !== 0) {
 	        $diff = date_diff(date_create($current),date_create($last));
+            
 	        $int_diff = $diff->format("%a")-1;
-	        if ($int_diff >= 1) {
+	        if ($int_diff==0){
                 $counter=$counter+$int_diff;
-	        }
-           
+               }
+           else if($int_diff >= 1) {
+            $counter=$counter+$int_diff;
+        }
 	    }
         
 	    $last = $item['Order_date'];
-	}
+	}                                   
+      //Query For Total Quantity and Payment
 
-    $sql = "SELECT sum(Order_quan) As Order_quan, sum(Pay_total) AS Pay_total FROM tbl_order a LEFT JOIN payment b  ON a.Order_id=b.Order_id"; 
+    $sql = "SELECT sum(Order_quan) as Order_quan FROM tbl_order where Order_date BETWEEN '$from_date' AND '$to_date'"; 
     $result = mysqli_query($conn, $sql);
-
-    while($row=mysqli_fetch_assoc($result)) {
-
-       $quan= $row["Order_quan"]." Kilos";    
-       $pay= $row["Pay_total"]." Rs.";
-         
-    }
-    
-echo "<table class='darkTable'>";
+    $row=mysqli_fetch_assoc($result);
+    $quan= $row["Order_quan"]." Kilos";    
+       
+     $Psql = "SELECT sum(Pay_total) as Pay_total FROM payment where Order_date BETWEEN '$from_date' AND '$to_date'"; 
+     $Presult = mysqli_query($conn, $Psql);
+     $row=mysqli_fetch_assoc($Presult); 
+     $pay= $row["Pay_total"]." Rs.";    
+       
+     echo "<table class='darkTable'>";
 echo "<thead>
 <tr>
 
-<th>Total Kilos</th>
+<th>Total Quantity</th>
 <th>Total Naga</th>
 <th>Total Payment</th>
 
@@ -102,7 +136,8 @@ echo "<thead>
          echo "";
 echo "</tbody>";
 echo "</table>";
-
+    }
+    
 ?>
 </body>
 </html>
