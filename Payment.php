@@ -2,7 +2,7 @@
 session_start();
 $q=$_SESSION['quantity of milk'];
 $d=$_SESSION['Date of Order'];
-
+$cn=$_SESSION['cname'];
 ?>
 
 <!DOCTYPE html>
@@ -34,7 +34,7 @@ $d=$_SESSION['Date of Order'];
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/rcustomer.css">
+    <link rel="stylesheet" href="css/order.css">
 </head>
 
 <body>
@@ -69,7 +69,7 @@ $d=$_SESSION['Date of Order'];
       $oid=$result['Order_id'];
 if (isset($_POST['submit'])) {
 include('config.php');
-$sql = "INSERT INTO Payment VALUES ('','$total','$oid','$d')";
+$sql = "INSERT INTO Payment VALUES ('','$total','$oid','$d','$cn')";
 $result=mysqli_query($conn, $sql);     
 if($result=true)
   {
@@ -85,17 +85,23 @@ else{
                  
 }                
         
-                
+               
                 ?> 
     
-    <section class="cust_info" id="cust_form">
-    <h2>Add Payment</h2>
-    <form action="" method="post" class="cust_form">
-    <input type="text" name="payment" placeholder="Rs." value="<?php echo $total ." Rs." ?>">
-    <input type="submit" value="Pay" name="submit" onsubmit="">
-    </form>
-</section>
-   
+<div class="container">
+	<div class="header">
+		<h2>Add Payment</h2>
+	</div>
+	<form id="form" class="form" method="POST">
+		<div class="form-control" style="background-color: #0a1332;border:none">
+			<label for="username">Total payment</label>
+			<input name="payment" type="text" placeholder="Rs." value="<?php echo $total ." Rs." ?>"/>
+    </div>
+		<input type="submit" value="Pay" name="submit">
+        
+        
+	</form>
+</div>
 
 </body>
 </html>

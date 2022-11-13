@@ -1,4 +1,7 @@
-
+<?php
+session_start();
+ $cn=$_SESSION['cname'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,17 +21,15 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/rcustomer.css">
+    <link rel="stylesheet" href="css/order.css">
+    <link href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
 </head>
 
 <body>
@@ -50,19 +51,9 @@
         </nav>
     </div>
 
-<section class="cust_info" id="cust_form">
-    <h2>Order Milk By providing these details</h2>
-    <form action="" method="post" class="cust_form">
-    <input type="text" name="quantity" placeholder="Quantity of milk in Kilos">
-    <input type="date" name="date" placeholder="Pick order date">
-    <input type="submit" value="Request for milk" name="submit">
-    </form>
-</section>
 <?php 
-session_start();
 $dateError=$quanError="";
 $date=$quan="";
-
       if(isset($_POST['quantity'])) 
       {$quan= $_POST['quantity'];}
 
@@ -92,7 +83,7 @@ $date=$quan="";
                   if($is_valid == 1 )
                   {
                     include('config.php');
-                  $sql = "INSERT INTO tbl_order VALUES ('','$quan','$date')";
+                  $sql = "INSERT INTO tbl_order VALUES ('','$quan','$date','$cn')";
                   $result=mysqli_query($conn, $sql);     
                  if($result=true)
                     {
@@ -111,17 +102,42 @@ $date=$quan="";
             
        
                 ?>
-
+<div class="container">
+	<div class="header">
+		<h2>Order Milk</h2>
+	</div>
+	<form id="form" class="form" method="POST">
+		<div class="form-control" style="background-color: #0a1332;border:none">
+			<label for="username">Quantity Of Milk</label>
+			<input name="quantity" type="number" placeholder="Kilos" oninput="validity.valid||(value='');"/>
+    </div>
+		<div class="form-control" style="background-color: #0a1332;border:none">
+			<label for="username">Order Date</label>
+			<input id="datepicker" name="date" type="text" placeholder="Pick date"/>
+		</div>
+		<input type="submit" value="Request for milk" name="submit">
+        
+        
+	</form>
+</div>
 </body>
+ <!-- Javascript For Date Picker -->
+<script type="text/javascript">
+    $(function() {
+        
+        $( "#datepicker" ).datepicker({ maxDate: new Date(),
+           
+            showAnim:'drop',
+            autoclose: true,
+            orientation:"bottom left",
+            numberOfMonths:1,
+            dateFormat:'dd/mm/yy'
+           
+          });
+    });
+</script>
 </html>
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+   
+
+    

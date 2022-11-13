@@ -12,14 +12,15 @@ body {
     height:100%;
 }
 
-.container {
+.container{
 	background-color: #0a1332;
 	border-radius: 15px;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 	overflow: hidden;
 	width: 600px;
 	max-width: 50%;
-    margin: auto;
+    margin:auto;
+    margin-top: 20px;
 	
 }
 
@@ -37,6 +38,7 @@ body {
 .form {
     color: #0a1332;
 	padding: 10px 40px;	
+	
 }
 
 .form-control {
@@ -87,7 +89,7 @@ body {
 	font-size: 16px;
 	padding: 10px;
 	margin: auto;
-	width: 25%;
+	width: 35%;
 }
 
 .form input[type=submit]:hover{

@@ -16,7 +16,7 @@ table.darkTable {
     border: 2px solid #000000;
     background-color: #0d4d99;
     width: 90%;
-    height: 200px;
+    height: 100px;
     text-align: center;
     border-collapse: collapse;
     margin: 0 auto;
@@ -48,14 +48,5 @@ table.darkTable {
   table.darkTable thead th:first-child {
     border-left: none;
   }
-  a 
-  {   display: block;
-      text-decoration: none;
-      margin-left: 60px;
-      margin-top: 20px;
-      color: #000000;
-  }
-  a img {
-        padding: 5px 2px 0 0;
-  }
+  
   

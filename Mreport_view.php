@@ -16,16 +16,14 @@
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
+     
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="css/indexorder.css">
+    <link href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 
 </head>
 
@@ -53,13 +51,13 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <h6>From Date</h6>
-                                        <input type="date" name="from_date" value="" class="form-control">
+                                        <input type="text" id="from" name="from_date" value="" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <h6>To Date</h6>
-                                        <input type="date" name="to_date" value="" class="form-control">
+                                        <input type="text" id="to" name="to_date" value="" class="form-control" >
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -70,7 +68,6 @@
                                 </div>
                             </div>
                         </form>
-
 <?Php
 global $counter;
 $quan= $pay="";
@@ -107,7 +104,7 @@ $quan= $pay="";
 	}                                   
       //Query For Total Quantity and Payment
 
-    $sql = "SELECT sum(Order_quan) as Order_quan FROM tbl_order where Order_date BETWEEN '$from_date' AND '$to_date'"; 
+    $sql = "SELECT sum(Order_quan) as Order_quan FROM tbl_order where Order_date BETWEEN '$from_date' AND '$to_date' and "; 
     $result = mysqli_query($conn, $sql);
     $row=mysqli_fetch_assoc($result);
     $quan= $row["Order_quan"]." Kilos";    
@@ -136,10 +133,33 @@ echo "<thead>
          echo "";
 echo "</tbody>";
 echo "</table>";
-    }
-    
+    } 
 ?>
+
 </body>
+<script type="text/javascript">
+    $(function() {
+        
+        $( "#from" ).datepicker({ maxDate: new Date(),
+            
+           
+            dateFormat:'dd/mm/yy',
+            beforeShow: function() {
+            $(this).datepicker('option', 'maxDate', $('#to').val());
+            if ($('#from').val() === '') $(this).datepicker('option', 'maxDate', 0);
+          }
+            
+        });
+        $("#to").datepicker({
+            
+            
+            dateFormat:'dd/mm/yy',
+            beforeShow: function() {
+            $(this).datepicker('option', 'minDate', $('#from').val());
+if ($('#to').val() === '') $(this).datepicker('option', 'maxDate', 0);                             
+         }
+            });
+       
+    });
+</script>
 </html>
-
-

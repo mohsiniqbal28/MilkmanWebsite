@@ -18,9 +18,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Libraries Stylesheet -->
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="http://code.jquery.com/ui/1.9.2/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
     <style>
 .errorColor {color: #D30000;}
 #cust{
@@ -32,12 +32,10 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    
     <link rel="stylesheet" href="css/rcustomer.css">
-    <!-- Template Javascript -->
-    <script type="text/javascript" src="js/main.js"></script>
-
+    
 </head>
 
 <body>
@@ -62,7 +60,7 @@
     
      $n=$cnic=$ph=$add=$date=$rol=$user_cnic=$pass="";
      $cnicError = $phoneError =  $nameError= $addError= $dateError= $roleError=$result=$passError="";
-
+     $validationError="";
      session_start();
       if(isset($_POST['name'])) 
       {$n= $_POST['name'];}
@@ -184,39 +182,71 @@
                     } 
                   }
                   else{
-                    echo "<h4><strong> Validation Errors </strong></h4>";
+                    $validationError= "<h4><strong> Validation Errors </strong></h4>";
                   }
             }
-              
-        
-                
+               
                 ?>
-
-<section class="cust_info" id="cust_form">
-    <h2>Please Fill Out The Form In Order To Register Yourself</h2>
-    <form action="" method="post" class="cust_form">
-    <input type="text" name="name" placeholder="Name">
-    <span class="errorColor"> <?php echo $nameError;?></span>
-    <input id="cnvalue" type="text"  name="cnic" placeholder="CNIC" >
-    <span class="errorColor"> <?php echo $cnicError;?></span>
-    <input id= "phvalue" type="text" name="phone" placeholder="Phone No."type = "number" maxlength = "13" >
-    <span class="errorColor"> <?php echo $phoneError;?></span>
-    
-    <input type="text" name="address" placeholder="Address" >
-    <span class="errorColor"> <?php echo $addError;?></span>
-    <input type="date" name="date" placeholder="Pick date">
-    <span class="errorColor"> <?php echo $dateError;?></span>
-    <input type="text" name="password" placeholder="password" >
-    <span class="errorColor"> <?php echo $passError;?></span>
-    <label for="color">Select Your Role:</label>
-    <select name="role" style="margin-left:120px ;" >
+  <div class="container">
+	<div class="header">
+		<h2>Please Fill Out This Form</h2>
+	</div>
+	<form id="form" class="form" method="POST">
+		<div class="form-control" style="background-color: #0a1332;border:none">
+			<label for="username">Name</label>
+			<input type="text" name="name"placeholder="user1"/>
+			<span class="error-message"> <?php echo $nameError;?></span>
+    </div>
+		<div class="form-control" style="background-color: #0a1332;border:none">
+			<label for="username">CNIC</label>
+			<input type="text" name="cnic"  placeholder="12345-6789012-3" id="CNIC" />
+			<span class="error-message"> <?php echo $cnicError;?></span>
+		</div>
+		<div class="form-control"style="background-color: #0a1332 ;border:none">
+			<label for="username">Phone Number</label>
+			<input type="text" name="phone" placeholder="9212345678900" id="phvalue" type = "number" maxlength = "13"/>
+			<span class="error-message"><?php echo $phoneError;?></span>
+		</div>
+		<div class="form-control" style="background-color: #0a1332;border:none">
+    <label for="username">Permanent Address</label>
+			<input type="text" name="address" placeholder="Block D,Garden Town Lahore" />
+			<span class="error-message"><?php echo $addError;?></span>
+		</div>
+    <div class="form-control" style="background-color: #0a1332 ;border:none">
+    <label for="username">Registration Date</label>
+    <input type="text" name="date" id="datepicker" placeholder="Pick date">
+			<span class="error-message"><?php echo $dateError;?></span>
+		</div>
+    <div class="form-control" style="background-color: #0a1332;border:none">
+    <label for="username">Password</label>
+    <input type="text" name="password" placeholder="1234abc@" >
+			<span class="error-message"><?php echo $passError;?></span>
+		</div>
+    <div class="form-control" style="background-color: #0a1332;border:none">
+    <label for="username">Your Role:</label>
+    <select name="role" style="margin-left:375px ;" >
+    <option value="0" >Select</option>
     <option value="customer" >Customer</option>
     <option value="milkman">Milk man</option>
   </select>
-  <span class="errorColor"> <?php echo $roleError;?></span>
-  
-    <input type="submit" value="Register" name="submit">
-    </form>
-</section>
+			<span class="error-message"><?php echo $roleError;?></span>
+		</div>
+		<input type="submit" value="Register" name="submit">
+	</form>
+</div>
 </body>
+<script type="text/javascript">
+    $(function() {
+        
+        $( "#datepicker" ).datepicker({ maxDate: new Date(),
+            minDate:new Date(),
+            showAnim:'drop',
+            autoclose: true,
+            orientation:"bottom left",
+            numberOfMonths:1,
+            dateFormat:'dd/mm/yy'
+           
+          });
+    });
+</script>
 </html>

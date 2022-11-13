@@ -1,41 +1,95 @@
-@import url("style.css");
-section.cust_info
-{
-    background-color: silver;
-    margin: 0 auto;
-    padding: 50px 0 0;
-    height: 560px;
-    background-image: url(../images/bottom-form.png);
-    background-position: center center;
-    background-size: contain;
-    
+
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,500&display=swap');
+
+* {
+	box-sizing: border-box;
 }
-section.cust_info h2 {
-text-align: center;
-margin:  0 0 50px 0;
+body {
+	background-color: #040f28;
+	font-family: 'Open Sans', sans-serif;
+    width:100%;
+    height:100%;
 }
-section.cust_info form.cust_form {
-    width: 60%;
-    margin: 0 auto;
-    background-color: white;
-    border-radius: 20px;
-    padding: 30px 20px 20px ;
+
+.container {
+	background-color: #0a1332;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
+	width: 600px;
+	max-width: 50%;
+	margin-bottom: 50px;
+	
+}
+
+.header {
+	background-color: #0a1332;
+	padding: 40px 20px;
     text-align: center;
 }
 
-section.cust_info form.cust_form input {
-    display: inline-block;
-    width : 45%;
-    padding: 5px;
-    margin-bottom: 10px;
-    border: 2px solid rgba(0,0,0,0.5);
-    border-radius: 5px;
-    color: black;
-    outline: transparent;
+.header h2 {
+    color: #fd5d14;
 }
-section.cust_info form.cust_form input[type=submit]
-{
-    cursor: pointer;
+
+.form {
+    color: #0a1332;
+	padding: 30px 40px;	
+}
+
+.form-control {
+	margin-bottom: 0px;
+	padding-bottom: 20px;
+	position: relative;
+   
+}
+
+
+.form-control label {
+	display: inline-block;
+	margin-bottom: 5px;
     color: white;
-    background-color: black;
 }
+
+.form-control input {
+	border: 1px solid #f0f0f0;
+    background: #040f28;
+	color: #f0f0f0;
+	border-radius: 4px;
+	display: block;
+	font-family: inherit;
+	font-size: 14px;
+	padding: 10px;
+	width: 100%;
+}
+
+.form-control input:focus {
+	outline: 0;
+	border-color: #fd5d14;
+}
+
+
+.error-message {
+    color: red;
+}
+
+.form input[type=submit] {
+	background-color: #fd5d14;
+	border: 2px solid #0a1332 ;
+	border-radius: 4px;
+	color: #fff;
+	display: block;
+	font-family: inherit;
+	font-size: 16px;
+	padding: 10px;
+	margin-top: 20px;
+    margin-left: 200px;
+	width: 25%;
+}
+.form input[type="date"] {
+    color: #777;
+    
+  }
+
+

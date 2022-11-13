@@ -53,7 +53,7 @@
 <h1 style="margin-top:20px; color:orangered;">All Records</h1>
 <?Php
 require_once "config.php"; 
-$sql = "SELECT a.Order_id,Order_quan,Order_date,Pay_total FROM tbl_order a, payment b  WHERE a.Order_id=b.Order_id";
+$sql = "SELECT a.Order_id,Order_quan,a.Order_date,Pay_total FROM tbl_order a, payment b  WHERE a.Order_id=b.Order_id";
 $result = mysqli_query($conn, $sql);
 if(!$result)
 {
@@ -132,9 +132,13 @@ else{
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" ></script>
   <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
   <script>
+
+    
+
   $(document).ready( function () {
 		$('.table').DataTable();
   });
+  
   </script>
 </body>
 </html>
