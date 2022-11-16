@@ -53,7 +53,7 @@
 
 <?php 
   
-  $pError=$p="";
+  $pmessage=$p="";
   function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
@@ -66,7 +66,7 @@
     if (isset($_POST['submit'])) {
         $is_valid =1;
         if (empty($_POST["price"])) {
-            $pError = "* Please Enter price";
+            $pmessage = "* Please Enter price";
             $is_valid = 0;
           } 
           else{
@@ -78,33 +78,27 @@
             $result = mysqli_query($conn, $sql);   
         if($result=true)
          {
-          echo "<strong>Price is Updated</strong>"; 
+            $pmessage="<strong>Price is Updated</strong>"; 
          } 
           }
-          else{
-          echo "<h4><strong> Validation Errors </strong></h4>";
-          }
+         
 }  
                 ?> 
 
-<section class="cust_info" id="cust_form">
-    <h2>Update Milk Price</h2>
-    <form action="" method="post" class="cust_form">
-    <input type="text" name="price" placeholder="Rs.">
-    <span class="errorColor"> <?php echo $pError;?></span>
-    <input type="submit" value="Update" name="submit" onsubmit="">
-    </form>
-</section>
+<div class="container">
+	<div class="header">
+		<h2>Update Milk Price</h2>
+	</div>
+	<form id="form" class="form" method="POST">
+		<div class="form-control" style="background-color: #0a1332;border:none">
+			<label for="username">Enter an amount</label>
+			<input name="price" type="text" placeholder="Rs."/>
+    </div>
+		<input type="submit" value="Update" name="submit">
+        <span style="color:red;margin-left:200px;margin-top:110px;"> <?php echo $pmessage;?></span>
+        
+	</form>
+</div>
 </body>
 </html>
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/jquery.inputmask.bundle.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>

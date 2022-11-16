@@ -51,7 +51,7 @@
     
     <h1 style="margin-top:20px; color:orangered;">Take An Action</h1>
         <h5 style="margin-left:120px;"><a href=Report_view.php>View All Records</a></h5>
-        <h5 style="margin-left:120px;"><a href=Mreport_view.php>View Monthly Report</a></h5>
+        <h5 style="margin-left:120px;"><a href=CMreport_view.php>View Monthly Report</a></h5>
         <h5 style="margin-left:120px;"><a href=Update_price.php>Update Milk Price</a></h5>
 </body>
 </html>

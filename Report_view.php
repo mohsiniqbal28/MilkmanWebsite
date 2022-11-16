@@ -23,10 +23,10 @@
     <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
     
-    <link rel="stylesheet" href="css/indexorder.css">
+    <!-- <link rel="stylesheet" href="css/indexorder.css"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
     
@@ -53,7 +53,7 @@
 <h1 style="margin-top:20px; color:orangered;">All Records</h1>
 <?Php
 require_once "config.php"; 
-$sql = "SELECT a.Order_id,Order_quan,a.Order_date,Pay_total FROM tbl_order a, payment b  WHERE a.Order_id=b.Order_id";
+$sql = "SELECT a.Order_id,Order_quan,STR_TO_DATE(Order_date,'%d/%m/%Y') AS Order_date,Pay_total a.Cust_name FROM tbl_order a, payment b  WHERE a.Order_id=b.Order_id";
 $result = mysqli_query($conn, $sql);
 if(!$result)
 {
@@ -68,6 +68,7 @@ else{
     <th>Milk Quantity</th>
     <th>Order Date</th>
     <th>Milk Payment</th>
+    <th>Customer Name</th>
     </tr>
     </thead>";
     echo "<tbody>";
@@ -94,6 +95,7 @@ else{
             <td>".$row["Order_quan"]."</td>       
             <td>".$row["Order_date"]."</td>
             <td>".$row["Pay_total"]."</td>
+            <td>".$row["Cust_name"]."</td>
             </tr>";
        echo "";
        echo "</td>";
@@ -107,6 +109,7 @@ else{
                         <td> Nill</td>       
                         <td>  $rty </td>
                         <td> Nill</td>
+                        <td> Nill</td>
                     </tr>";
 
                 $date = new DateTime($rty);
@@ -118,6 +121,7 @@ else{
                     <td>".$row["Order_quan"]."</td>       
                     <td>".$row["Order_date"]."</td>
                     <td>".$row["Pay_total"]."</td>
+                    <td>".$row["Cust_name"]."</td>
                   </tr>";
             
         }

@@ -67,7 +67,7 @@
                         <div class="p-3" style="max-width: 900px;">
                             <i class="fa fa-home fa-4x text-primary mb-4 d-none d-sm-block"></i>
                             <h1 class="display-2  text-white mb-md-4">Find Out If We Deliver To Your Neighbourhood</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Request For Milk</a>
+                            <a href="clogin.php" class="btn btn-primary py-md-3 px-md-5 mt-2">Request For Milk</a>
                         </div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                         <div class="p-3" style="max-width: 900px;">
                             <i class="fa fa-tools fa-4x text-primary mb-4 d-none d-sm-block"></i>
                             <h1 class="display-2  text-white mb-md-4">Healthy. Nutritious. Milk.</h1>
-                            <a href="" class="btn btn-primary py-md-3 px-md-5 mt-2">Hire us</a>
+                            <a href="clogin.php" class="btn btn-primary py-md-3 px-md-5 mt-2">Hire us</a>
                         </div>
                     </div>
                 </div>
